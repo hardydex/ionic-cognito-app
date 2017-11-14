@@ -1,0 +1,29 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="loginForm">
+    <ion-item>
+      <ion-label floating>Username</ion-label>
+      <ion-input formControlName="username" type="text" autocapitalize="none"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!loginForm.controls['username'].valid && (loginForm.controls['username'].dirty || loginAttempt)">
+      <p class="error">Please enter a valid username.</p>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!loginForm.controls['password'].valid && (loginForm.controls['password'].dirty || loginAttempt)">
+      <p class="error">Please enter a valid password.</p>
+    </ion-item>
+    <div padding>
+        <button ion-button block color="success" class="login" (click)="login()">Sign In</button>
+    </div>
+  </form>
+</ion-content>

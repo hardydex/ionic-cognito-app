@@ -1,0 +1,94 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Sign Up</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="signupForm" (submit)="signUp()">
+    <!-- <ion-row>
+      <ion-col col-6>
+          <ion-item>
+            <ion-label floating>{{ 'FIRST_NAME' | translate }} </ion-label>
+            <ion-input formControlName="firstName" type="text"></ion-input>
+          </ion-item>
+          <ion-item *ngIf="signupForm.controls['firstName'].errors && (signupForm.controls['firstName'].dirty || submitAttempt)">
+            <p *ngIf="signupForm.controls['firstName'].errors.required" class="error">
+              First name is required.
+            </p>
+            <p *ngIf="signupForm.controls['firstName'].errors.minlength || 
+                      signupForm.controls['firstName'].errors.maxlength ||
+                      signupForm.controls['firstName'].errors.pattern" class="error">
+              Please enter a valid first name.
+            </p>
+          </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label floating>{{ 'LAST_NAME' | translate }} </ion-label>
+          <ion-input formControlName="lastName" type="text"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="signupForm.controls['lastName'].errors && (signupForm.controls['lastName'].dirty || submitAttempt)">
+          <p *ngIf="signupForm.controls['lastName'].errors.required" class="error">
+            Last name is required.
+          </p>
+          <p *ngIf="signupForm.controls['lastName'].errors.minlength || 
+                    signupForm.controls['lastName'].errors.maxlength ||
+                    signupForm.controls['lastName'].errors.pattern" class="error">
+            Please enter a valid last name.
+          </p>
+        </ion-item>
+      </ion-col>
+    </ion-row> -->
+    <ion-item>
+      <ion-label floating>Username</ion-label>
+      <ion-input formControlName="username" type="text"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="signupForm.controls['username'].errors && (signupForm.controls['username'].dirty || submitAttempt)">
+       <p *ngIf="signupForm.controls['username'].errors.required" class="error">
+        Username is required.
+      </p>
+      <p *ngIf="signupForm.controls['username'].errors.minlength || 
+                signupForm.controls['username'].errors.maxlength ||
+                signupForm.controls['username'].errors.pattern" class="error">
+        Please enter a valid username.
+      </p>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input formControlName="email" type="text"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="signupForm.controls['email'].errors && (signupForm.controls['email'].dirty || submitAttempt)">
+      <p class="error">Please enter a valid email address.</p>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-label floating>{{ 'PHONE' | translate }} </ion-label>
+      <ion-input formControlName="phoneNumber" type="text"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="signupForm.controls['phoneNumber'].errors && (signupForm.controls['phoneNumber'].dirty || signupAttempt)">
+      <p class="error">Please enter a valid phone number.</p>
+    </ion-item> -->
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+      <!-- <ion-input type="password" formControlName="password" validateEqual="confirmPassword" reverse="true"></ion-input> -->
+    </ion-item>
+    <ion-item *ngIf="!signupForm.controls['password'].valid && (signupForm.controls['password'].dirty || signupAttempt)">
+      <p class="error">Please enter a valid password.</p>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-label floating>{{ 'CONFIRM_PASSWORD' | translate }}</ion-label>
+      <ion-input type="password" formControlName="confirmPassword" validateEqual="password" reverse="false"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="signupForm.controls['confirmPassword'].errors && (signupForm.controls['confirmPassword'].touched || signupAttempt)">
+      <p *ngIf="signupForm.controls['confirmPassword'].errors.required" class="error">Please retype the password above.</p>
+      <p *ngIf="!signupForm.controls['confirmPassword'].errors.validateEqual" class="error">Password does not match</p>
+    </ion-item> -->
+    <div padding>
+        <button ion-button block color="primary" class="signup">Sign Up</button>
+      </div>
+  </form>
+</ion-content>
