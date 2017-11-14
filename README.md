@@ -30,17 +30,16 @@ AWS Services used:
 ### Ionic app setup
 1. Clone this repo: 'git clone https://github.com/hardydex/ionic-cognito-app'
 2. Open the congito.config.ts file; Add the informaion for the following:
-   region: 'your-region',
-   userPoolId: 'your-region_1gfVMWz3c',
-   appId: 'your-app-id',
-   idpUrl: 'cognito-idp.your-region.amazonaws.com',
-   identityPoolId: 'your-region:guid-of-the-identityPool'
+   * region: 'your-region',
+   * userPoolId: 'your-region_1gfVMWz3c',
+   * appId: 'your-app-id',
+   * idpUrl: 'cognito-idp.your-region.amazonaws.com',
+   * identityPoolId: 'your-region:guid-of-the-identityPool'
 3. Open a bash shell and navigate to the project folder.
 4.
 ```bash
 $ sudo npm install
 ```
-
 Then, to run it, and run:
 
 ```bash
