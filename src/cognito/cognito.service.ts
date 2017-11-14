@@ -5,7 +5,6 @@ import { CognitoUser, CognitoUserPool, CognitoUserAttribute, AuthenticationDetai
 
 import { CognitoConfig } from './cognito.config';
 import { Subject, Observable } from 'rxjs';
-//import { Credentials } from 'aws-sdk/clients/cognitoidentity';
 import { Credentials } from 'aws-sdk/lib/credentials';
 
 export interface ICognitoCredentials {
@@ -78,7 +77,6 @@ export class CognitoService {
     private buildCreds() {
         let self = this;
         let json = self.buildLogins(self.session.getIdToken().getJwtToken());
-        // console.log(json);
         return new AWS.CognitoIdentityCredentials(json);
     }
 
@@ -117,44 +115,6 @@ export class CognitoService {
                 reject(error);
             }
         });
-
-        //#region Remove section
-        /* _cogUser.confirmRegistration(code,true,(err,result)=>{
-            if (err){
-                let exception: ICognitoException = new CognitoException(err);
-                console.log('error occurred during confirm regisitraion',exception);
-                // reject(exception);
-            } else {
-                console.log('confirm registration result',result);
-                // resolve(result);
-            }
-        }) */
-
-        /* console.log('Cognito User', _cogUser);
-        return new Promise((reject,resolve) => {
-            console.log('user pool',this.userPool);
-            resolve(this.userPool);
-        }) */
-        
-        /* return new Promise((resolve,reject)=> {
-            try {
-                this.refreshSession();
-                this.cognitoUser.confirmRegistration(code,true,(err,result)=>{
-                    if (err){
-                        let exception: ICognitoException = new CognitoException(err);
-                        console.log('error occurred during confirm regisitraion',exception);
-                        reject(exception);
-                    } else {
-                        console.log('confirm registration result',result);
-                        resolve(result);
-                    }
-                });
-            } catch (error) {
-                let exception: ICognitoException = new CognitoException(error);
-                reject(error);
-            }
-        }) */
-        //#endregion
     }
 
     resendConfirmationCode() {
@@ -184,23 +144,6 @@ export class CognitoService {
                 reject(error);
             }
         });
-        
-        //#region Remove
-        /* let userData = { Username: this.user.username, Pool: this.userPool };
-        
-        let _cogUser = new CognitoUser(userData);
-        
-        _cogUser.resendConfirmationCode((err,result)=>{
-            if (err){
-                let exception: ICognitoException = new CognitoException(err);
-                console.log('error occurred during confirm regisitraion',exception);
-                // reject(exception);
-            } else {
-                console.log('confirmation code resent',result);
-                // resolve(result);
-            }
-        }); */
-        //#endregion
     }
 
     private getAWSCredentials(): Promise<any> {
@@ -318,11 +261,6 @@ export class CognitoService {
                         self.cognitoUser.completeNewPasswordChallenge(creds.password,requiredAttributes, {
                             onSuccess: (session: CognitoUserSession) => {
 
-                                //#region Console Debug Section Remove
-                                // console.log(`session information`, session);
-                                // console.log('user id',session.getIdToken());
-                                //#endregion 
-
                                 self.refreshSession()
                                     .then((session) => {
                                         if (session != null){
@@ -334,11 +272,6 @@ export class CognitoService {
                                         reject(this.handleError(err,'refreshSession'));
                                     });
                                 
-                                //#region Console Debug Section Remove    
-                                // self.saveCreds(session,self.cognitoUser);
-                                // self.signInSubject.next(self.cognitoUser.getUsername());
-                                //#endregion
-
                             }, onFailure: (err:any) => {
                                 console.log('error occurred completing the challenge..',err);
                                 reject(this.handleError(err,'completeNewPasswordChallenge'));
@@ -348,33 +281,6 @@ export class CognitoService {
                     mfaRequired: (challangeName, challengeParameters) => {},
                     customChallenge: (challangeParameters) => {},
                     onSuccess: (session: CognitoUserSession) => {
-
-                        //#region Console Debug Section Remove
-                        // console.log(`signed in user ${self.cognitoUser.getUsername()}. Session valid?: `, session.isValid());
-                        // console.log(`access token ${session.getAccessToken().getJwtToken()}`);
-                        //#endregion
-                        
-                        //#region Console Debug Section Remove
-                        /* if (self.cognitoUser != null) {
-                            self.cognitoUser.getSession((err,result) => {
-                                if (result) {
-                                    console.log('you are now logged in.');
-
-                                    AWS.config.credentials = new AWS.CognitoIdentityCredentials(self.buildLogins(session.getAccessToken().getJwtToken()));
-                                } else {
-                                    console.log('something went wrong...');
-                                }
-                            })
-                        }
-
-                        self.user = {id: session.getIdToken(), username: self.cognitoUser.getUsername() }; 
-                        console.log('user',self.user); */
-
-                        // self.saveCreds(session, self.cognitoUser);
-                        // self.signInSubject.next(self.cognitoUser.getUsername());
-                        
-                        // resolve(self.cognitoUser);
-                        //#endregion
 
                         self.refreshSession()
                         .then((session) => {
@@ -388,13 +294,6 @@ export class CognitoService {
                         });
                     },
                     onFailure: (err: any) => {
-                        // self.saveCreds(null,self.cognitoUser);
-
-                        //#region section Remove
-                        // self.user = {id: '', username: self.cognitoUser.getUsername() }; 
-                        // console.log('user',self.user);
-                        //#endregion
-
                         reject(this.handleError(err,'password signin'));
                     },
                 })
@@ -427,17 +326,15 @@ export class CognitoService {
                 attributes.push(attributeEmail);
                 attributes.push(attributeName);
 
-                // console.log('attributes',attributes);
                 self.userPool.signUp(creds.username,creds.password,attributes,null,(err:Error,result) => {
                     if (err){ return reject(err);}
                     console.log('registration result',result);
                     console.log('user id',result.userSub);
-                    // self.saveCreds(null,result.user);
                     resolve(result.user);
                 });
             } catch (error) {
                 reject(error);
             }
-        })
+        });
     }
 }
