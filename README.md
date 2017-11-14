@@ -36,7 +36,7 @@ AWS Services used:
    * idpUrl: 'cognito-idp.your-region.amazonaws.com',
    * identityPoolId: 'your-region:guid-of-the-identityPool'
 3. Open a bash shell and navigate to the project folder.
-4.
+4. Then run.
 ```bash
 $ sudo npm install
 ```
