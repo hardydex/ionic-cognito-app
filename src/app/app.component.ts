@@ -11,7 +11,6 @@ import { WelcomePage } from '../pages/welcome/welcome';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  // rootPage:any = HomePage;
   rootPage:any;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
