@@ -53,6 +53,9 @@ export class CognitoService {
         if (prior){
             return prior;
         }
+        if (this.config.region === 'your-region') {
+            throw new Error(`Cognito service has not been configured properly. Please refer to the README file for more details.`);
+        }
         AWS.config.region = this.config.region;
         AWS.config.credentials = new AWS.CognitoIdentityCredentials({
             IdentityPoolId: this.config.identityPoolId
