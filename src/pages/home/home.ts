@@ -22,16 +22,6 @@ export class HomePage {
 
   ionViewDidLoad() {
 
-    //#region Remove 
-    /* this.cognitoService.getCredentials().subscribe(creds => {
-      // let exception: ICognitoException 
-       this.cognitoService.cognitoUser['getUserAttributes']((err: Error, result: CognitoUserAttribute[]) => {
-         if (err) { return console.log('error getting attributes', err);}
-         this.attributes = result;
-       })
-     }); */
-     //#endregion
-
      this.cognitoService.cognitoUser.getUserAttributes((err: Error, result:any[]) => {
        if (err) {
          let exception:ICognitoException = new CognitoException(err);

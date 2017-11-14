@@ -32,7 +32,7 @@ export class SignupconfirmPage {
   }
 
   ionViewDidLoad() {
-    // console.log('ionViewDidLoad SignupconfirmPage');
+    
   }
 
   confirm () {

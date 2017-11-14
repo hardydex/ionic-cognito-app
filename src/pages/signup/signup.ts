@@ -37,7 +37,7 @@ export class SignupPage {
   }
 
   ionViewDidLoad() {
-    // console.log('ionViewDidLoad SignupPage');
+
   }
 
   signUp() {
@@ -82,7 +82,6 @@ export class SignupPage {
         loader.dismiss();
       })); 
     } 
-
   }
 
 }
