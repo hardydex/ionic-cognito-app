@@ -49,6 +49,6 @@ $ ionic cordova run ios
 
 Substitute ios for android if not on a Mac. Note: you can also substitute ios for browser if you want to run the application in a browser:
 ```bash
-$ ionic serve --browser -yourbrowserofchoose
+$ ionic serve --browser -yourbrowserofchoice
 ```
 
