@@ -9,7 +9,7 @@ export interface ICognitoConfig {
 export let CognitoConfig: ICognitoConfig = {
     region:'your-region',
     userPoolId: 'your-region_1gfVMWz3C',
-    appId: 'youraddid',
-    idpUrl: `cognito-idp.us-east-1.amazonaws.com`,
+    appId: 'your-app-id',
+    idpUrl: `cognito-idp.your-region.amazonaws.com`,
     identityPoolId: 'us-east-1:7b7898c5-6b92-426b-8df0-31fc935fb627'
 }
