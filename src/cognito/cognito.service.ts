@@ -210,7 +210,7 @@ export class CognitoService {
                     reject(err);
                 }
                 // Link user pool identity to federated pool identity //
-                AWS.config.credentials = new AWS.CognitoIdentityCredentials(self.buildLogins(session.getAccessToken().getJwtToken()));
+                AWS.config.credentials = new AWS.CognitoIdentityCredentials(self.buildLogins(session.getIdToken().getJwtToken()));
                 console.log(`${new Date()} - refreshed session for ${self.cognitoUser.getUsername()}. Valid?: `, session.isValid());
                 self.saveCreds(session);
                 resolve(session);
